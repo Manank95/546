@@ -99,7 +99,7 @@ The transaction collection will store all the transactions that have been initia
 
 ## A list of transactions (subdocument; not stored in a separate collection)
 
-This subdocument is used to describe the user's profile.
+This subdocument is used to describe the transaction details.
 
 ```
 {
