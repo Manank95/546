@@ -104,7 +104,7 @@ This subdocument is used to describe the user's profile.
 ```
 {
 	"_id":"5a5c4461-cdc9-4144-84f9-fcb278c5c122",
-    "timeStamp":"9 May 2017, 23:00:00 GMT"
+    	"timeStamp":"9 May 2017, 23:00:00 GMT"
 	"coinName": "eth",
 	"action":"buy",
 	"quantity": 2,
@@ -157,15 +157,15 @@ This subdocument is used to describe the user's coin, that he has bought/owned.
 
 ```
 {
-    		"btc": {
-    			"quantity": 5,
-    			"transactions": ["5a5c4461-cdc9-4144-84f9-fcb278c5c122"]
-    		},
-    		"ltc": {
-    			"quantity": 3,
-    			"transactions": ["6sf43sgk-cdc9-4144-84f9-fcb278c5c122", "8ehs234b-cdc9-4144-84f9-fcb278c5c122"]
-    		},...
-    }
+	"btc": {
+		"quantity": 5,
+		"transactions": ["5a5c4461-cdc9-4144-84f9-fcb278c5c122"]
+	},
+	"ltc": {
+		"quantity": 3,
+		"transactions": ["6sf43sgk-cdc9-4144-84f9-fcb278c5c122", "8ehs234b-cdc9-4144-84f9-fcb278c5c122"]
+	},...
+}
 ```
 
 <!-- change -->
