@@ -76,7 +76,8 @@ The transaction collection will store all the transactions that have been initia
 			"valuePerCoin": 800,
 			"stage": "initiated" 	// cancelled, complete
 		},
-		{	"timeStamp":"10 May 2017, 23:00:00 GMT"
+		{	
+			"timeStamp":"10 May 2017, 23:00:00 GMT"
 			"coinName": "xrp",
 			"action":"sell",
 			"quantity": 20,
@@ -91,8 +92,7 @@ The transaction collection will store all the transactions that have been initia
 |------|------|-------------|
 | username | string | unique username to display on his dashboard | 
 | userid | String | A globally unique identifier to represent the user |
-| Transaction | string | The task title |
-| description | list of transactions | A list of all transactions of user |
+| Transaction | list of transactions | A list of all transactions of user |
 
 
 ## A list of transactions (subdocument; not stored in a separate collection)
