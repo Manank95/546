@@ -3,8 +3,8 @@
 * Manank Valnad
 * Rohit Keshav
 * Mehul Mistry
-* <insert name>
-* <insert name>
+* Zhiyu Zhou
+* Zhang Li
 
 ## Users
 
@@ -51,9 +51,11 @@ This subdocument is used to describe the user's profile.
 <!-- change -->
 | Name | Type | Description |
 |------|------|-------------|
-| name | string | The user's name. | 
-| hobby | string | A line of text that represents the user's hobby. |
+| username | string | The user's name. | 
+| First_name | string | User's first name. |
+| last_name | string | The user's last name. |
 | _id  | string | A globally unique identifier to represent the user |
+| amount | integer | the final amount in user's account in dollars |
 
 
 ## Transaction
@@ -63,30 +65,61 @@ The transaction collection will store all the transactions that have been initia
 
 ```
 {
-    "_id": "5a5c4461-cdc9-4144-84f9-fcb278c5c122",
-    "initiator": {
-    	"username": "jdog_43",
-    	"userID": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310"
-    	},
-    "title":"usd to btc",
-    "transaction": [{
-    	"coinName": "btc",
-    	"quantity": 2,
-    	"buyOrSellAmount": -1000,
-    	"valuePerCoin": 500,
-    	"stage": "initiated" 	// cancelled, complete
-    }]
+    "username": "jdog_43", //just to save the fetching time used to fetch only uname from users collection
+    "userID": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310"
+    "transaction": [
+		{
+			"timeStamp":"9 May 2017, 23:00:00 GMT"
+			"coinName": "eth",
+			"action":"buy",
+			"quantity": 2,
+			"valuePerCoin": 800,
+			"stage": "initiated" 	// cancelled, complete
+		},
+		{	"timeStamp":"10 May 2017, 23:00:00 GMT"
+			"coinName": "xrp",
+			"action":"sell",
+			"quantity": 20,
+			"valuePerCoin": 0.90,
+			"stage": "completed"
+		},...]
 }
 ```
 
 <!-- change -->
 | Name | Type | Description |
 |------|------|-------------|
-| _id | string | The task ID. | 
-| creator | User Profile | A profile of the user whom has created the task.. |
-|title| string | The task title |
-|description| string | A longer description of the task |
-|comments| comment array | An array of comments related to the thread |
+| username | string | unique username to display on his dashboard | 
+| userid | String | A globally unique identifier to represent the user |
+| Transaction | string | The task title |
+| description | list of transactions | A list of all transactions of user |
+
+
+## A list of transactions (subdocument; not stored in a separate collection)
+
+This subdocument is used to describe the user's profile.
+
+```
+{
+    "timeStamp":"9 May 2017, 23:00:00 GMT"
+	"coinName": "eth",
+	"action":"buy",
+	"quantity": 2,
+	"valuePerCoin": 800,
+	"stage": "initiated" 	// cancelled, complete
+}
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| timestamp | string | unique timestamp for each transaction | 
+| coinName | String | Coin used in this transaction |
+| action | string | states if user bought or sold in this transaction |
+| quantity | integer | quantity of coin user bought/sold in this transaction |
+| valuePerCoin | integer | current value of that coin at the time of transaction |
+| stage | string | states if transaction has been completed or cancelled or just initiated |
+
+
 
 ## Portfolio
 
@@ -94,7 +127,6 @@ User's complete portfolio, record as to how much he as earned and other stats re
 
 ```
 {
-    "_id":"d7a44a10-0de3-44ad-9c58-5f3fe8f1c0d3",
     "userID": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
     "coinTrack": {
     		"btc": {
@@ -102,13 +134,9 @@ User's complete portfolio, record as to how much he as earned and other stats re
     			"transactions": ["5a5c4461-cdc9-4144-84f9-fcb278c5c122"]
     		},
     		"ltc": {
-    			"quantity": 0,
-    			"transactions": []
-    		},
-    		"eth": {
-    			"quantity": 0,
-    			"transactions": []
-    		}
+    			"quantity": 3,
+    			"transactions": ["6sf43sgk-cdc9-4144-84f9-fcb278c5c122", "8ehs234b-cdc9-4144-84f9-fcb278c5c122"]
+    		},...
     }
 }
 ```
@@ -116,9 +144,8 @@ User's complete portfolio, record as to how much he as earned and other stats re
 <!-- change -->
 | Name | Type | Description |
 |------|------|-------------|
-| _id | string | The comment ID. | 
-| poster | User Profile | A profile of the user who made the comment |
-| comment | string | The comment that the user made |
+| userID | string | A globally unique identifier to represent the user | 
+| cointrack | object of objects | An object of coin tracking objects |
 
 ## CoinTrack (subdocument; not stored in separate collection)
 
@@ -131,19 +158,15 @@ This subdocument is used to describe the user's coin, that he has bought/owned.
     			"transactions": ["5a5c4461-cdc9-4144-84f9-fcb278c5c122"]
     		},
     		"ltc": {
-    			"quantity": 0,
-    			"transactions": []
-    		},
-    		"eth": {
-    			"quantity": 0,
-    			"transactions": []
-    		}
+    			"quantity": 3,
+    			"transactions": ["6sf43sgk-cdc9-4144-84f9-fcb278c5c122", "8ehs234b-cdc9-4144-84f9-fcb278c5c122"]
+    		},...
     }
 ```
 
 <!-- change -->
 | Name | Type | Description |
 |------|------|-------------|
-| name | string | The user's name. | 
-| hobby | string | A line of text that represents the user's hobby. |
-| _id  | string | A globally unique identifier to represent the user |
+| coin_name | object | object of this coin's detailed transaction | 
+| quantity | integer | quantity of the coin used in transaction |
+| transaction  | List of strings | A list of string containing all transaction happened with this user for this coin |
