@@ -68,7 +68,8 @@ The transaction collection will store all the transactions that have been initia
     "username": "jdog_43", //just to save the fetching time used to fetch only uname from users collection
     "userID": "7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310"
     "transaction": [
-		{
+		{	
+			"_id":"5a5c4461-cdc9-4144-84f9-fcb278c5c122",
 			"timeStamp":"9 May 2017, 23:00:00 GMT"
 			"coinName": "eth",
 			"action":"buy",
@@ -77,6 +78,7 @@ The transaction collection will store all the transactions that have been initia
 			"stage": "initiated" 	// cancelled, complete
 		},
 		{	
+			"_id":"6sf43sgk-cdc9-4144-84f9-fcb278c5c122",
 			"timeStamp":"10 May 2017, 23:00:00 GMT"
 			"coinName": "xrp",
 			"action":"sell",
@@ -101,6 +103,7 @@ This subdocument is used to describe the user's profile.
 
 ```
 {
+	"_id":"5a5c4461-cdc9-4144-84f9-fcb278c5c122",
     "timeStamp":"9 May 2017, 23:00:00 GMT"
 	"coinName": "eth",
 	"action":"buy",
@@ -112,7 +115,8 @@ This subdocument is used to describe the user's profile.
 
 | Name | Type | Description |
 |------|------|-------------|
-| timestamp | string | unique timestamp for each transaction | 
+| _id | string | unique identifier for each transaction |
+| timestamp | string | timestamp for each transaction | 
 | coinName | String | Coin used in this transaction |
 | action | string | states if user bought or sold in this transaction |
 | quantity | integer | quantity of coin user bought/sold in this transaction |
